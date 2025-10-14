@@ -185,7 +185,7 @@ Retrieve all saved tasks.
 
 ```
 SmartTaskPlanner/
-├── Frontend UI/              # React + Vite frontend
+├── Smart Task Planner Frontend/              # React + Vite frontend
 │   ├── src/
 │   │   ├── components/       # React components
 │   │   │   └── TaskCard.tsx
