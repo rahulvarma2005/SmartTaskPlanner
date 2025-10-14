@@ -46,7 +46,7 @@ Before you begin, ensure you have the following installed:
 - **Maven 3.6+**
 - **Node.js 18+** and npm
 - **PostgreSQL 12+**
-- **Google Gemini API Key** ([Get one here](https://makersuite.google.com/app/apikey))
+- **Google Gemini API Key**
 
 ---
 
