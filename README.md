@@ -6,6 +6,10 @@ SmartTaskPlanner is a full-stack application that leverages AI (Google Gemini) t
 
 ---
 
+## Video Link: https://youtu.be/mIs-oWbpg04
+
+---
+
 ## 🌟 Features
 
 - **AI-Powered Task Breakdown**: Automatically generates actionable tasks from high-level goals using Google Gemini API
