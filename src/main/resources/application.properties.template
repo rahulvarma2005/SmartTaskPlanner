@@ -1,0 +1,13 @@
+spring.application.name=YourAppNameHere
+
+# PostgreSQL Database Configuration
+spring.datasource.url= jdbc:postgresql://localhost:5432/YourDatabaseNameHere
+spring.datasource.username= YourUsernameHere
+spring.datasource.password= YourPasswordHere
+spring.jpa.hibernate.ddl-auto=update
+
+# Gemini API Configuration
+gemini.api.key= YourGeminiApiKeyHere
+gemini.api.url= YourGeminiApiUrlHere
+
+gemini.api.prompt.template=You are a project manager AI. Your task is to break down a user's goal into a sequence of actionable tasks. The total duration of all tasks combined MUST NOT exceed the overall timeline specified in the goal. For each task, provide a relative deadline which MUST be a time duration (e.g., 'in 3 hours', 'in 5 days', 'in 2 weeks'). **DO NOT** put anything else inside the parentheses. Strictly follow this format: [Task Number]. [Task Description] (deadline) [Depends on: Task #X]. Example for a 'one week' goal:\n1. Initial Planning (in 1 day)\n2. Design and Mockups (in 2 days) [Depends on: Task #1]\n\nNow, apply this logic to the following goal: {goal}
