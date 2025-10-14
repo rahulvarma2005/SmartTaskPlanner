@@ -1,217 +1,283 @@
-Smart Task Planner
-<p align="center">
-<img src="https://placehold.co/600x300/f7f9fc/333333?text=Smart+Task+Planner+Demo" alt="Smart Task Planner Demo">
-</p>
+# SmartTaskPlanner 🎯
 
-📋 Table of Contents
-📖 Overview
+**Break user goals into actionable tasks with timelines using AI reasoning.**
 
-✨ Features
+SmartTaskPlanner is a full-stack application that leverages AI (Google Gemini) to intelligently decompose high-level goals into structured, time-bound, and dependency-aware tasks. Perfect for project planning, personal goal tracking, and task management.
 
-🛠️ Technologies Used
+---
 
-🚀 Getting Started
+## 🌟 Features
 
-Prerequisites
+- **AI-Powered Task Breakdown**: Automatically generates actionable tasks from high-level goals using Google Gemini API
+- **Smart Timeline Management**: Ensures tasks fit within specified deadlines with relative time durations
+- **Dependency Tracking**: Identifies and manages task dependencies
+- **Modern UI**: Built with React, TypeScript, and Tailwind CSS
+- **RESTful API**: Spring Boot backend with PostgreSQL database
+- **Persistent Storage**: All tasks are saved to PostgreSQL for future reference
 
-Installation
+---
 
-💻 Usage
+## 🏗️ Architecture
 
-📂 Project Structure
+### Backend (Spring Boot)
+- **Framework**: Spring Boot 3.5.6
+- **Java Version**: 21
+- **Database**: PostgreSQL
+- **Key Dependencies**:
+  - Spring Data JPA
+  - Spring Web
+  - Spring WebFlux
+  - PostgreSQL Driver
 
-🔀 API Endpoints
+### Frontend (React + Vite)
+- **Framework**: React 18.3.1
+- **Build Tool**: Vite 5.4.2
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
 
-⚙️ Configuration
+---
 
-🤝 Contributing
+## 📋 Prerequisites
 
-📄 License
+Before you begin, ensure you have the following installed:
 
-📖 Overview
-The Smart Task Planner is an intelligent web application designed to help users break down large goals into smaller, manageable tasks. By leveraging the power of the Gemini Pro AI model, it automatically generates a detailed action plan with deadlines and dependencies, making goal achievement more organized and attainable.
+- **Java 21** or higher
+- **Maven 3.6+**
+- **Node.js 18+** and npm
+- **PostgreSQL 12+**
+- **Google Gemini API Key** ([Get one here](https://makersuite.google.com/app/apikey))
 
-✨ Features
-AI-Powered Task Generation: Simply input your goal, and the application will use the Gemini Pro to generate a comprehensive list of tasks.
+---
 
-Automatic Timelines: Each task is assigned a relative deadline (e.g., "in 2 days," "in 1 week") to keep you on track.
+## 🚀 Getting Started
 
-Dependency Management: The AI identifies and assigns dependencies between tasks, ensuring a logical workflow.
+### 1. Clone the Repository
 
-Interactive Task Management: Mark tasks as complete and track your progress visually.
+```bash
+git clone https://github.com/rahulvarma2005/SmartTaskPlanner.git
+cd SmartTaskPlanner
+```
 
-Clean and Modern UI: A user-friendly interface built with React and Tailwind CSS for a seamless experience.
+### 2. Database Setup
 
-🛠️ Technologies Used
-Backend
-Java 21
+Create a PostgreSQL database:
 
-Spring Boot 3.5.6
+```sql
+CREATE DATABASE smarttaskplanner;
+```
 
-Spring Data JPA
+### 3. Backend Configuration
 
-PostgreSQL
+1. Navigate to `src/main/resources/`
+2. Copy `application.properties.template` to `application.properties`:
 
-Maven
+```bash
+copy src\main\resources\application.properties.template src\main\resources\application.properties
+```
 
-Frontend
-React
+3. Edit `application.properties` with your configuration:
 
-Vite
+```properties
+spring.application.name=SmartTaskPlanner
 
-TypeScript
+# PostgreSQL Database Configuration
+spring.datasource.url=jdbc:postgresql://localhost:5432/smarttaskplanner
+spring.datasource.username=your_db_username
+spring.datasource.password=your_db_password
+spring.jpa.hibernate.ddl-auto=update
 
-Tailwind CSS
+# Gemini API Configuration
+gemini.api.key=your_gemini_api_key_here
+gemini.api.url=https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent
+```
 
-Lucide React (for icons)
+### 4. Start the Backend
 
-AI
-Google Gemini Pro
+```bash
+mvnw spring-boot:run
+```
 
-🚀 Getting Started
-Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+Or using Maven wrapper on Windows:
+```bash
+mvnw.cmd spring-boot:run
+```
 
-Prerequisites
-Java 21 or later
+The backend will start on `http://localhost:8080`
 
-Maven
+### 5. Start the Frontend
 
-Node.js and npm
+Open a new terminal and navigate to the frontend directory:
 
-PostgreSQL
-
-A Gemini API Key
-
-Installation
-Clone the repository:
-
-git clone [https://github.com/rahulvarma2005/smart-task-planner.git](https://github.com/rahulvarma2005/smart-task-planner.git)
-cd smart-task-planner
-
-Backend Setup:
-
-Navigate to the root of the project.
-
-Create a copy of the application.properties.template file and rename it to application.properties.
-
-Update application.properties with your PostgreSQL database credentials and your Gemini API key.
-
-Build the Spring Boot application:
-
-./mvnw clean install
-
-Run the application:
-
-./mvnw spring-boot:run
-
-The backend will be running on http://localhost:8081.
-
-Frontend Setup:
-
-Navigate to the Frontend UI directory:
-
+```bash
 cd "Frontend UI"
-
-Install the necessary npm packages:
-
 npm install
-
-Start the frontend development server:
-
 npm run dev
+```
 
-The frontend will be accessible at http://localhost:5173.
+The frontend will start on `http://localhost:5173`
 
-💻 Usage
-Open your web browser and navigate to http://localhost:5173.
+---
 
-In the input field, type in your desired goal (e.g., "Learn to play the guitar," "Build a personal website").
+## 🧪 Running Tests
 
-The application will make a request to the backend, which in turn queries the Gemini Pro.
+### Backend Tests
 
-A list of actionable tasks will be generated and displayed, each with a description, deadline, and any dependencies.
+```bash
+mvnw test
+```
 
-You can interact with the tasks by marking them as complete.
+Or:
+```bash
+mvnw.cmd test
+```
 
-📂 Project Structure
-The project is organized into two main parts: the Spring Boot backend and the React frontend.
+### Frontend Tests
 
-SmartTaskPlanner (Root Directory):
+```bash
+cd "Frontend UI"
+npm run typecheck
+npm run lint
+```
 
-src/main/java/com/planner/SmartTaskPlanner/: Contains the Java source code for the Spring Boot application.
+---
 
-controller/: REST API controllers.
+## 📡 API Endpoints
 
-dto/: Data Transfer Objects for handling requests and responses.
+### POST `/api/tasks/generate`
 
-model/: JPA entity classes.
+Generate tasks from a goal using AI.
 
-repository/: Spring Data JPA repositories.
-
-service/: Business logic and services.
-
-src/main/resources/: Application configuration files.
-
-pom.xml: Maven project configuration.
-
-Frontend UI/:
-
-src/: Contains the React application's source code.
-
-components/: Reusable React components.
-
-App.tsx: The main application component.
-
-main.tsx: The entry point of the React application.
-
-package.json: NPM dependencies and scripts.
-
-vite.config.ts: Vite configuration.
-
-tailwind.config.js: Tailwind CSS configuration.
-
-🔀 API Endpoints
-The backend exposes the following REST API endpoint:
-
-POST /api/tasks/generate
-
-Description: Generates a list of tasks based on a user-provided goal.
-
-Request Body:
-
+**Request Body:**
+```json
 {
-  "goal": "Your goal description here"
+  "goal": "Create a mobile app in one month"
 }
+```
 
-Response:
-
+**Response:**
+```json
 [
   {
     "id": 1,
-    "taskDescription": "Generated task description",
-    "deadline": "in X days/weeks",
-    "status": "To Do",
-    "dependencies": "[Depends on: Task #X]"
+    "taskNumber": 1,
+    "description": "Initial Planning",
+    "deadline": "in 3 days",
+    "dependencies": ""
+  },
+  {
+    "id": 2,
+    "taskNumber": 2,
+    "description": "Design UI/UX",
+    "deadline": "in 1 week",
+    "dependencies": "Task #1"
   }
 ]
+```
 
-⚙️ Configuration
-The primary configuration file for the backend is application.properties. Here, you must set the following properties:
+### GET `/api/tasks`
 
-spring.datasource.url: The JDBC URL for your PostgreSQL database.
+Retrieve all saved tasks.
 
-spring.datasource.username: The username for your PostgreSQL database.
+---
 
-spring.datasource.password: The password for your PostgreSQL database.
+## 📁 Project Structure
 
-gemini.api.key: Your API key for the Gemini Pro.
+```
+SmartTaskPlanner/
+├── Frontend UI/              # React + Vite frontend
+│   ├── src/
+│   │   ├── components/       # React components
+│   │   │   └── TaskCard.tsx
+│   │   ├── App.tsx           # Main app component
+│   │   └── main.tsx          # Entry point
+│   ├── package.json
+│   └── vite.config.ts
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/planner/SmartTaskPlanner/
+│       │       ├── SmartTaskPlannerApplication.java
+│       │       ├── controller/
+│       │       │   └── TaskController.java
+│       │       ├── dto/
+│       │       │   ├── GoalRequest.java
+│       │       │   └── TaskResponse.java
+│       │       ├── model/
+│       │       │   └── Task.java
+│       │       ├── repository/
+│       │       │   └── TaskRepository.java
+│       │       └── service/
+│       │           └── TaskService.java
+│       └── resources/
+│           ├── application.properties
+│           └── application.properties.template
+├── pom.xml
+└── README.md
+```
 
-gemini.api.url: The URL for the Gemini API.
+---
 
-You can also customize the prompt sent to the Gemini Pro by modifying the gemini.api.prompt.template in this file.
+## 🛠️ Technologies Used
 
-🤝 Contributing
-Contributions are welcome! Please feel free to submit a pull request.
+### Backend
+- Spring Boot 3.5.6
+- Spring Data JPA
+- Spring WebFlux (for API calls)
+- PostgreSQL
+- Maven
+- Java 21
 
-📄 License
-This project is licensed under the MIT License.
+### Frontend
+- React 18.3.1
+- TypeScript 5.5.3
+- Vite 5.4.2
+- Tailwind CSS 3.4.1
+- Lucide React (Icons)
+
+### AI Integration
+- Google Gemini API
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📝 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## 👨‍💻 Author
+
+**Rahul Varma**
+- GitHub: [@rahulvarma2005](https://github.com/rahulvarma2005)
+
+---
+
+## 🙏 Acknowledgments
+
+- Google Gemini for AI capabilities
+- Spring Boot community
+- React and Vite teams
+- All contributors and supporters
+
+---
+
+## 📧 Support
+
+If you have any questions or run into issues, please open an issue on GitHub or contact the maintainer.
+
+---
+
+**Happy Planning! 🚀**
