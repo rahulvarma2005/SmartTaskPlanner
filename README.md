@@ -90,7 +90,7 @@ spring.jpa.hibernate.ddl-auto=update
 
 # Gemini API Configuration
 gemini.api.key=your_gemini_api_key_here
-gemini.api.url=https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent
+gemini.api.url=your_gemini_api_url_here
 ```
 
 ### 4. Start the Backend
