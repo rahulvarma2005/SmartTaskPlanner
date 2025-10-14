@@ -1,4 +1,33 @@
 Smart Task Planner
+<p align="center">
+<img src="https://placehold.co/600x300/f7f9fc/333333?text=Smart+Task+Planner+Demo" alt="Smart Task Planner Demo">
+</p>
+
+📋 Table of Contents
+📖 Overview
+
+✨ Features
+
+🛠️ Technologies Used
+
+🚀 Getting Started
+
+Prerequisites
+
+Installation
+
+💻 Usage
+
+📂 Project Structure
+
+🔀 API Endpoints
+
+⚙️ Configuration
+
+🤝 Contributing
+
+📄 License
+
 📖 Overview
 The Smart Task Planner is an intelligent web application designed to help users break down large goals into smaller, manageable tasks. By leveraging the power of the Gemini Pro AI model, it automatically generates a detailed action plan with deadlines and dependencies, making goal achievement more organized and attainable.
 
@@ -14,8 +43,7 @@ Interactive Task Management: Mark tasks as complete and track your progress visu
 Clean and Modern UI: A user-friendly interface built with React and Tailwind CSS for a seamless experience.
 
 🛠️ Technologies Used
-Backend:
-
+Backend
 Java 21
 
 Spring Boot 3.5.6
@@ -26,8 +54,7 @@ PostgreSQL
 
 Maven
 
-Frontend:
-
+Frontend
 React
 
 Vite
@@ -38,8 +65,7 @@ Tailwind CSS
 
 Lucide React (for icons)
 
-AI:
-
+AI
 Google Gemini Pro
 
 🚀 Getting Started
@@ -184,8 +210,8 @@ gemini.api.url: The URL for the Gemini API.
 
 You can also customize the prompt sent to the Gemini Pro by modifying the gemini.api.prompt.template in this file.
 
-Contributing
+🤝 Contributing
 Contributions are welcome! Please feel free to submit a pull request.
 
-License
+📄 License
 This project is licensed under the MIT License.
