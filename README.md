@@ -46,7 +46,7 @@ Before you begin, ensure you have the following installed:
 - **Maven 3.6+**
 - **Node.js 18+** and npm
 - **PostgreSQL 12+**
-- **Google Gemini API Key** ([Get one here](https://makersuite.google.com/app/apikey))
+- **Google Gemini API Key**
 
 ---
 
@@ -69,10 +69,11 @@ CREATE DATABASE smarttaskplanner;
 
 ### 3. Backend Configuration
 
-1. Navigate to `src/main/resources/`
+1. Navigate to `Smart Task Planner Backend/src/main/resources/`
 2. Copy `application.properties.template` to `application.properties`:
 
 ```bash
+cd "Smart Task Planner Backend"
 copy src\main\resources\application.properties.template src\main\resources\application.properties
 ```
 
@@ -94,23 +95,26 @@ gemini.api.url=https://generativelanguage.googleapis.com/v1beta/models/gemini-pr
 
 ### 4. Start the Backend
 
-```bash
-mvnw spring-boot:run
-```
+Navigate to the backend directory and run:
 
-Or using Maven wrapper on Windows:
 ```bash
+cd "Smart Task Planner Backend"
 mvnw.cmd spring-boot:run
 ```
 
-The backend will start on `http://localhost:8080`
+Or if you have Maven installed globally:
+```bash
+mvn spring-boot:run
+```
+
+The backend will start on `http://localhost:8081`
 
 ### 5. Start the Frontend
 
 Open a new terminal and navigate to the frontend directory:
 
 ```bash
-cd "Frontend UI"
+cd "Smart Task Planner Frontend"
 npm install
 npm run dev
 ```
@@ -124,18 +128,19 @@ The frontend will start on `http://localhost:5173`
 ### Backend Tests
 
 ```bash
-mvnw test
+cd "Smart Task Planner Backend"
+mvnw.cmd test
 ```
 
-Or:
+Or if you have Maven installed globally:
 ```bash
-mvnw.cmd test
+mvn test
 ```
 
 ### Frontend Tests
 
 ```bash
-cd "Frontend UI"
+cd "Smart Task Planner Frontend"
 npm run typecheck
 npm run lint
 ```
@@ -185,34 +190,46 @@ Retrieve all saved tasks.
 
 ```
 SmartTaskPlanner/
-├── Smart Task Planner Frontend/              # React + Vite frontend
+├── Smart Task Planner Backend/     # Spring Boot backend
 │   ├── src/
-│   │   ├── components/       # React components
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/planner/SmartTaskPlanner/
+│   │   │   │       ├── SmartTaskPlannerApplication.java
+│   │   │   │       ├── controller/
+│   │   │   │       │   └── TaskController.java
+│   │   │   │       ├── dto/
+│   │   │   │       │   ├── GoalRequest.java
+│   │   │   │       │   └── TaskResponse.java
+│   │   │   │       ├── model/
+│   │   │   │       │   └── Task.java
+│   │   │   │       ├── repository/
+│   │   │   │       │   └── TaskRepository.java
+│   │   │   │       └── service/
+│   │   │   │           └── TaskService.java
+│   │   │   └── resources/
+│   │   │       ├── application.properties
+│   │   │       └── application.properties.template
+│   │   └── test/
+│   │       └── java/
+│   │           └── com/planner/SmartTaskPlanner/
+│   │               └── controller/
+│   │                   └── TaskControllerTest.java
+│   ├── pom.xml
+│   ├── mvnw
+│   └── mvnw.cmd
+├── Smart Task Planner Frontend/    # React + Vite frontend
+│   ├── src/
+│   │   ├── components/
 │   │   │   └── TaskCard.tsx
-│   │   ├── App.tsx           # Main app component
-│   │   └── main.tsx          # Entry point
+│   │   ├── App.tsx               # Main app component
+│   │   ├── main.tsx              # Entry point
+│   │   └── index.css
 │   ├── package.json
-│   └── vite.config.ts
-├── src/
-│   └── main/
-│       ├── java/
-│       │   └── com/planner/SmartTaskPlanner/
-│       │       ├── SmartTaskPlannerApplication.java
-│       │       ├── controller/
-│       │       │   └── TaskController.java
-│       │       ├── dto/
-│       │       │   ├── GoalRequest.java
-│       │       │   └── TaskResponse.java
-│       │       ├── model/
-│       │       │   └── Task.java
-│       │       ├── repository/
-│       │       │   └── TaskRepository.java
-│       │       └── service/
-│       │           └── TaskService.java
-│       └── resources/
-│           ├── application.properties
-│           └── application.properties.template
-├── pom.xml
+│   ├── vite.config.ts
+│   ├── tailwind.config.js
+│   └── index.html
+├── target/                         # Build output
 └── README.md
 ```
 
@@ -233,7 +250,6 @@ SmartTaskPlanner/
 - TypeScript 5.5.3
 - Vite 5.4.2
 - Tailwind CSS 3.4.1
-- Lucide React (Icons)
 
 ### AI Integration
 - Google Gemini API
@@ -244,15 +260,6 @@ SmartTaskPlanner/
 
 **Rahul Varma**
 - GitHub: [@rahulvarma2005](https://github.com/rahulvarma2005)
-
----
-
-## 🙏 Acknowledgments
-
-- Google Gemini for AI capabilities
-- Spring Boot community
-- React and Vite teams
-- All contributors and supporters
 
 ---
 
