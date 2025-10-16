@@ -11,7 +11,8 @@
 
 SmartTaskPlanner is a full-stack application that leverages Google Gemini AI to intelligently decompose high-level goals into structured, time-bound, and dependency-aware tasks. Perfect for project planning, personal goal tracking, and task management.
 
-🎥 **[Demo Video](https://youtu.be/mIs-oWbpg04)** | 🌐 **[Live Demo](https://smart-task-planner-backend-wwha.onrender.com)**
+🎥 **Demo Video** - [https://youtu.be/mIs-oWbpg04](https://youtu.be/mIs-oWbpg04)
+🌐 **Live Demo** - [https://smart-task-planner-backend-wwha.onrender.com](https://smart-task-planner-backend-wwha.onrender.com)
 
 ---
 
@@ -146,30 +147,17 @@ Now, apply this logic to the following goal: {goal}
 - **Relative Deadlines**: Uses relative time expressions (in X days/weeks)
 - **Clear Instructions**: Minimizes ambiguity in AI responses
 
-### Example AI Response:
-**Input Goal**: "Create a mobile app in one month"
-
-**AI Output**:
-```
-1. Define app requirements and target audience (in 3 days)
-2. Create wireframes and UI/UX design (in 5 days) [Depends on: Task #1]
-3. Set up development environment (in 2 days) [Depends on: Task #1]
-4. Develop core features (in 12 days) [Depends on: Task #2, Task #3]
-5. Testing and bug fixes (in 5 days) [Depends on: Task #4]
-6. Deploy to app stores (in 3 days) [Depends on: Task #5]
-```
-
 ---
 
 ## 📋 Prerequisites
 
 Before you begin, ensure you have the following installed:
 
-- **Java 21** or higher ([Download](https://www.oracle.com/java/technologies/downloads/))
-- **Maven 3.6+** (included via Maven wrapper)
-- **Node.js 18+** and npm ([Download](https://nodejs.org/))
-- **PostgreSQL 12+** ([Download](https://www.postgresql.org/download/))
-- **Google Gemini API Key** ([Get one here](https://makersuite.google.com/app/apikey))
+- **Java 21** or higher
+- **Maven 3.6+** 
+- **Node.js 18+** and npm
+- **PostgreSQL 12+**
+- **Google Gemini API Key**
 - **Git** for version control
 
 ---
@@ -280,30 +268,6 @@ The frontend will start on `http://localhost:5173`
 
 ---
 
-## 🧪 Running Tests
-
-### Backend Tests
-
-```bash
-cd "Smart Task Planner Backend"
-mvnw.cmd test
-```
-
-Or if you have Maven installed globally:
-```bash
-mvn test
-```
-
-### Frontend Tests
-
-```bash
-cd "Smart Task Planner Frontend"
-npm run typecheck
-npm run lint
-```
-
----
-
 ## 📡 API Endpoints
 
 ### POST `/api/tasks/generate`
@@ -345,13 +309,6 @@ Content-Type: application/json
     "dependencies": "Depends on: Task #1"
   }
 ]
-```
-
-**cURL Example:**
-```bash
-curl -X POST http://localhost:8081/api/tasks/generate \
-  -H "Content-Type: application/json" \
-  -d "{\"goal\":\"Learn Docker in one week\"}"
 ```
 
 ---
@@ -542,161 +499,6 @@ npm run build
 
 ---
 
-## 🔐 Environment Variables
-
-### Backend Environment Variables
-
-| Variable | Description | Required | Default |
-|----------|-------------|----------|---------|
-| `PORT` | Server port | No | 8081 |
-| `DATABASE_URL` | PostgreSQL connection string | Yes | localhost:5432 |
-| `DB_USERNAME` | Database username | Yes | postgres |
-| `DB_PASSWORD` | Database password | Yes | - |
-| `GEMINI_API_KEY` | Google Gemini API key | Yes | - |
-| `GEMINI_API_URL` | Gemini API endpoint | Yes | Set in properties |
-
-### Frontend Environment Variables
-
-| Variable | Description | Required | Default |
-|----------|-------------|----------|---------|
-| `VITE_API_BASE_URL` | Backend API URL | Yes | http://localhost:8081 |
-
-> **Security Note:** Never commit `.env` files or expose API keys in public repositories
-
----
-
-## 💡 Usage Examples
-
-### Example 1: Project Planning
-**Input:** "Launch a SaaS product in 3 months"
-
-**Generated Tasks:**
-1. Market research and competitor analysis (in 1 week)
-2. Define product features and MVP scope (in 1 week) [Depends on: Task #1]
-3. Design system and UI/UX (in 2 weeks) [Depends on: Task #2]
-4. Backend development (in 4 weeks) [Depends on: Task #3]
-5. Frontend development (in 4 weeks) [Depends on: Task #3]
-6. Testing and QA (in 2 weeks) [Depends on: Task #4, Task #5]
-7. Beta launch and user feedback (in 2 weeks) [Depends on: Task #6]
-8. Official launch and marketing (in 1 week) [Depends on: Task #7]
-
-### Example 2: Learning Goal
-**Input:** "Learn React in 4 weeks"
-
-**Generated Tasks:**
-1. Learn JavaScript fundamentals (in 5 days)
-2. Study React basics and components (in 5 days) [Depends on: Task #1]
-3. Learn React Hooks and state management (in 5 days) [Depends on: Task #2]
-4. Build practice projects (in 1 week) [Depends on: Task #3]
-5. Learn React Router and advanced concepts (in 1 week) [Depends on: Task #3]
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. **Fork the repository**
-2. **Create a feature branch:**
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-3. **Commit your changes:**
-   ```bash
-   git commit -m 'Add some AmazingFeature'
-   ```
-4. **Push to the branch:**
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-5. **Open a Pull Request**
-
-### Development Guidelines
-- Follow existing code style
-- Write meaningful commit messages
-- Add tests for new features
-- Update documentation as needed
-- Ensure all tests pass before submitting PR
-
----
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-#### Backend Issues
-
-**Problem:** Application fails to start
-- **Solution:** Check if PostgreSQL is running and credentials are correct
-- Verify `application.properties` configuration
-- Check Java version: `java -version`
-
-**Problem:** Gemini API errors
-- **Solution:** Verify API key is valid
-- Check API endpoint URL
-- Review rate limits on Gemini API
-
-**Problem:** Database connection errors
-- **Solution:** Ensure PostgreSQL is running
-- Verify database exists: `CREATE DATABASE smarttaskplanner;`
-- Check firewall rules
-
-#### Frontend Issues
-
-**Problem:** API calls failing with CORS errors
-- **Solution:** Verify `@CrossOrigin` annotation in backend controller
-- Check if backend is running on correct port
-- Ensure `VITE_API_BASE_URL` is correctly set
-
-**Problem:** Environment variables not loading
-- **Solution:** Ensure `.env` file exists in frontend root
-- Restart dev server after changing `.env`
-- Variables must be prefixed with `VITE_`
-
-**Problem:** Build errors
-- **Solution:** Delete `node_modules` and reinstall: `npm install`
-- Clear cache: `npm cache clean --force`
-- Check Node.js version: `node -v`
-
----
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-## 👨‍💻 Author
-
-**Rahul Varma**
-- GitHub: [@rahulvarma2005](https://github.com/rahulvarma2005)
-- Repository: [SmartTaskPlanner](https://github.com/rahulvarma2005/SmartTaskPlanner)
-
----
-
-## 🙏 Acknowledgments
-
-- **Google Gemini AI** for powerful language model capabilities
-- **Spring Boot Community** for excellent framework and documentation
-- **React Team** for the amazing UI library
-- **Vite** for blazing fast development experience
-- **Tailwind CSS** for utility-first styling
-- **Render** for easy cloud deployment
-- All contributors and supporters of this project
-
----
-
-## 📞 Support
-
-If you encounter any issues or have questions:
-
-1. **Check the documentation** in this README
-2. **Review the troubleshooting section** above
-3. **Open an issue** on [GitHub Issues](https://github.com/rahulvarma2005/SmartTaskPlanner/issues)
-4. **Watch the demo video** for usage examples
-
----
-
 ## 🗺️ Roadmap
 
 Future enhancements planned:
@@ -714,16 +516,4 @@ Future enhancements planned:
 
 ---
 
-## 📊 Project Stats
-
-- **Lines of Code:** ~2000+
-- **Components:** 1 main component + TaskCard
-- **API Endpoints:** 1 (extensible)
-- **Database Tables:** 1 (Task entity)
-- **Docker Images:** 2 (Backend + Frontend)
-
----
-
 **Made with ❤️ by Rahul Varma**
-
-**Happy Planning! 🚀**
