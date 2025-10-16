@@ -8,6 +8,8 @@ interface Task {
   dependencies: string | null;
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8081';
+
 function App() {
   const [goal, setGoal] = useState('');
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -19,7 +21,7 @@ function App() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:8081/api/tasks/generate', {
+      const response = await fetch(`${API_BASE_URL}/api/tasks/generate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
