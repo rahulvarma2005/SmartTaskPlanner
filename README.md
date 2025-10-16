@@ -23,7 +23,86 @@ SmartTaskPlanner is a full-stack application that leverages AI (Google Gemini) t
 
 ## 🏗️ Architecture
 
-### Backend (Spring Boot)
+```mermaid
+graph TB
+    subgraph "Client Layer"
+        A[React Frontend<br/>TypeScript + Vite]
+        A1[Task Card Component]
+        A2[Goal Input Form]
+    end
+    
+    subgraph "API Layer"
+        B[Spring Boot REST API<br/>Port: 8080]
+        B1[Task Controller]
+    end
+    
+    subgraph "Business Logic Layer"
+        C[Task Service]
+        C1[AI Integration Logic]
+    end
+    
+    subgraph "External Services"
+        D[Google Gemini API<br/>AI Task Generation]
+    end
+    
+    subgraph "Data Access Layer"
+        E[Task Repository<br/>Spring Data JPA]
+    end
+    
+    subgraph "Database"
+        F[(PostgreSQL<br/>Task Storage)]
+    end
+    
+    A -->|HTTP Requests<br/>Port: 5173| B
+    A1 -.->|Renders| A
+    A2 -.->|Submits Goal| A
+    B -->|Routes to| B1
+    B1 -->|Calls| C
+    C -->|Requests AI<br/>Task Breakdown| D
+    D -->|Returns<br/>Task List| C
+    C -->|Saves/Retrieves| E
+    E -->|SQL Queries| F
+    C1 -.->|Integrated in| C
+    
+    style A fill:#61dafb,stroke:#333,stroke-width:2px,color:#000
+    style B fill:#6db33f,stroke:#333,stroke-width:2px,color:#fff
+    style C fill:#f89820,stroke:#333,stroke-width:2px,color:#000
+    style D fill:#4285f4,stroke:#333,stroke-width:2px,color:#fff
+    style E fill:#ff6b6b,stroke:#333,stroke-width:2px,color:#fff
+    style F fill:#336791,stroke:#333,stroke-width:2px,color:#fff
+```
+
+### System Architecture Overview
+
+The SmartTaskPlanner follows a **layered architecture** pattern with clear separation of concerns:
+
+1. **Client Layer (React Frontend)**
+   - User interface built with React and TypeScript
+   - Communicates with backend via REST API
+   - Runs on Vite dev server (Port 5173)
+
+2. **API Layer (Spring Boot)**
+   - RESTful endpoints for task operations
+   - Handles HTTP requests and responses
+   - Runs on embedded Tomcat (Port 8080)
+
+3. **Business Logic Layer**
+   - Task orchestration and processing
+   - Integration with Google Gemini AI
+   - Business rules and validation
+
+4. **Data Access Layer**
+   - Spring Data JPA repositories
+   - ORM mapping with Hibernate
+   - Database abstraction
+
+5. **Database Layer**
+   - PostgreSQL for persistent storage
+   - Stores generated tasks and dependencies
+
+### Technology Stack
+
+#### Backend (Spring Boot)
 - **Framework**: Spring Boot 3.5.6
 - **Java Version**: 21
 - **Database**: PostgreSQL
@@ -33,7 +112,7 @@ SmartTaskPlanner is a full-stack application that leverages AI (Google Gemini) t
   - Spring WebFlux
   - PostgreSQL Driver
 
-### Frontend (React + Vite)
+#### Frontend (React + Vite)
 - **Framework**: React 18.3.1
 - **Build Tool**: Vite 5.4.2
 - **Language**: TypeScript
